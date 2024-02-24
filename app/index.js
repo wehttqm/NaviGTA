@@ -10,11 +10,6 @@ export default function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [StatusBarComponent, setStatusBarVisible] = useState(false);
 
-  const handleToggleTheme = () => {
-    const newTheme = theme === true ? false : true;
-    toggleTheme(newTheme);
-  }
-
   useEffect(() => {
     setStatusBarVisible(true);
   }, []);
@@ -53,7 +48,7 @@ export default function Home() {
       {StatusBarComponent && <StatusBar barStyle={styles.statusBar} translucent={true} />}
       <Stack.Screen options={styles.stackScreen} />
           <View style={styles.viewStyle}>
-            <TouchableOpacity onPress={() => {handleToggleTheme()}}>
+            <TouchableOpacity onPress={() => {toggleTheme(theme === true ? false : true)}}>
               <Button buttonColor={styles.buttonColor} style={{ borderRadius: '10px'}} mode={'contained'} textColor={styles.textStyle.color}>
                 Toggle {theme === true ? 'light' : 'dark'} mode
               </Button>
