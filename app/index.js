@@ -19,19 +19,22 @@ export default function Home() {
     setStatusBarVisible(true);
   }, []);
 
+  const DARK = 'black'
+  const LIGHT = 'white'
+
   const styles = StyleSheet.create({
     safeAreaView: {
       flex: 1,
-      backgroundColor: theme === true ? 'black' : 'white',
+      backgroundColor: theme === true ? DARK : LIGHT,
     },
     statusBar: theme === true ? 'light-content' : 'dark-content',
     stackScreen: {
-      headerStyle: { backgroundColor: theme === true ? 'black' : 'white' },
+      headerStyle: { backgroundColor: theme === true ? DARK : LIGHT },
       headerShadowVisible: false,
-      headerTitleStyle: { color: theme === true ? 'white' : 'black' },
-      title: 'Navigate'
+      headerTitleStyle: { color: theme === true ? LIGHT : DARK },
+      title: 'Golf sucks'
     },
-    buttonColor: theme === true ? 'black' : 'white',
+    buttonColor: theme === true ? DARK : LIGHT,
     viewStyle: {
       width: '100%',
       alignItems: 'center',
@@ -40,7 +43,7 @@ export default function Home() {
     textStyle: {
       fontSize: 20,
       marginTop: 50,
-      color: theme === true ? 'white' : 'black'
+      color: theme === true ? LIGHT : DARK
     },
   });
 
@@ -50,13 +53,13 @@ export default function Home() {
       {StatusBarComponent && <StatusBar barStyle={styles.statusBar} translucent={true} />}
       <Stack.Screen options={styles.stackScreen} />
           <View style={styles.viewStyle}>
-            <TouchableOpacity>
-              <Button buttonColor={styles.buttonColor} mode={'outlined'} textColor={styles.textStyle.color} onPress={handleToggleTheme}>
-                Toggle {theme === true ? 'Light' : 'Dark'} Mode
+            <TouchableOpacity onPress={() => {handleToggleTheme()}}>
+              <Button buttonColor={styles.buttonColor} style={{ borderRadius: '10px'}} mode={'contained'} textColor={styles.textStyle.color}>
+                Toggle {theme === true ? 'light' : 'dark'} mode
               </Button>
             </TouchableOpacity>
           </View>
-          <Grid theme={theme}/>
+          <Grid theme={theme} light = {LIGHT} dark = {DARK}/>
           
 
     </SafeAreaView>
